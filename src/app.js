@@ -9,6 +9,10 @@ const myConnection = require('express-myconnection');
 //luego inicializamos express a traves de una constante llamada app:
 const app = express();
 
+
+//importando rutas-----------------------------------------------------
+const customersvroutes = require('./routes/customersv');
+
 //settings - configuramos express--------------------------------------
 app.set('port', process.env.PORT || 3000); //revisa si hay un puerto en el sistema operativo y sino que use el puerto 30000
 app.set('view engine', 'ehs'); //motor de plantillas
@@ -19,14 +23,23 @@ app.use(morgan('dev'));//muestra mensajes por consola para saber que es lo que l
 app.use(myConnection(mysql, {
     host: 'localhost',
     user: 'root',
-    password: 'contraseña',
+    password: 'abc123',
     port: 3306,
     database: 'crudnodejsmysql'
 }, 'single'));
 
 
 
-//routes (peticiones)--------------------------------------------------
+//routes (peticiones) para escribir las url--------------------------------------------------
+app.use('/', customersvroutes);
+
+
+//archivos estaticos (archivos complementarios como por ej el css, imagenes etc..)--------------------------------------------------------------------------
+app.use(express.static(path.join(__dirname, 'public')));
+
+//iniciando el server-------------------------------------------------------------------------
+
+
 
 
 //luego inicializamos el servidor:

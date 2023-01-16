@@ -15,7 +15,7 @@ const customersvroutes = require('./routes/customersv');
 
 //settings - configuramos express--------------------------------------
 app.set('port', process.env.PORT || 3000); //revisa si hay un puerto en el sistema operativo y sino que use el puerto 30000
-app.set('view engine', 'ehs'); //motor de plantillas
+app.set('view engine', 'ejs'); //motor de plantillas
 app.set('views', path.join(__dirname, 'views'));//le decimos donde esta la carpeta views
 
 //middlewares----------------------------------------------------------

@@ -7,6 +7,7 @@ const customersvController =  require('../controllers/customersvController');
 
 //rutas de las url-------------------------------------------------
 router.get('/', customersvController.list);
+router.post('/add', customersvController.save); //recibe datos
 
 
 //luego lo exporto

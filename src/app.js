@@ -5,6 +5,7 @@ const path = require('path'); //el modulo path de express se encarga de unir dir
 const morgan = require('morgan');
 const mysql = require('mysql');
 const myConnection = require('express-myconnection');
+const bodyParser = require('body-parser');
 
 //luego inicializamos express a traves de una constante llamada app:
 const app = express();
@@ -12,6 +13,7 @@ const app = express();
 
 //importando rutas-----------------------------------------------------
 const customersvroutes = require('./routes/customersv');
+
 
 //settings - configuramos express--------------------------------------
 app.set('port', process.env.PORT || 3000); //revisa si hay un puerto en el sistema operativo y sino que use el puerto 30000
@@ -29,6 +31,8 @@ app.use(myConnection(mysql, {
 }, 'single'));
 
 
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));//a traves de este metodo de express requerimos un metodo que nos permite entender todos los datos que vengan desde el formulario
 
 //routes (peticiones) para escribir las url--------------------------------------------------
 app.use('/', customersvroutes);

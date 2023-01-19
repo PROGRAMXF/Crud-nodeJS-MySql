@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 const controller = {};
 
 //consulta la lista de la bd---------------------
@@ -19,8 +21,19 @@ controller.list = (req, response) => {
 });
 };
 
+//funcion que le vamos a dar a la ruta add
+controller.save = (req, response) => {
+    const data = req.body; //aca llegan los datos que vienen del formulario
 
+    //recibimos todos los campos del formulario
+    req.getConnection((err, conn) => {
+        conn.query('INSERT INTO customerv set ?', [data], (err, customer) => {
+            console.log(customer);
+            response.send('works')
+        });
 
+    });
+};
 
 //exportamos este controlador
 module.exports = controller;

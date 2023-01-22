@@ -1,4 +1,4 @@
-const { response } = require("express");
+
 
 const controller = {};
 
@@ -27,8 +27,8 @@ controller.save = (req, response) => {
 
     //recibimos todos los campos del formulario
     req.getConnection((err, conn) => {
-        conn.query('INSERT INTO customerv set ?', [data], (err, customer) => {
-            console.log(customer);
+        conn.query('INSERT INTO customerv set ?', [data], (err, customerv) => {
+            console.log(customerv);
             response.send('works')
         });
 

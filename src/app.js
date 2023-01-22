@@ -5,7 +5,8 @@ const path = require('path'); //el modulo path de express se encarga de unir dir
 const morgan = require('morgan');
 const mysql = require('mysql');
 const myConnection = require('express-myconnection');
-const bodyParser = require('body-parser');
+
+
 
 //luego inicializamos express a traves de una constante llamada app:
 const app = express();
@@ -20,6 +21,7 @@ app.set('port', process.env.PORT || 3000); //revisa si hay un puerto en el siste
 app.set('view engine', 'ejs'); //motor de plantillas
 app.set('views', path.join(__dirname, 'views'));//le decimos donde esta la carpeta views
 
+
 //middlewares----------------------------------------------------------
 app.use(morgan('dev'));//muestra mensajes por consola para saber que es lo que le esta llegando al server
 app.use(myConnection(mysql, {
@@ -31,8 +33,12 @@ app.use(myConnection(mysql, {
 }, 'single'));
 
 
+
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));//a traves de este metodo de express requerimos un metodo que nos permite entender todos los datos que vengan desde el formulario
+
+
 
 //routes (peticiones) para escribir las url--------------------------------------------------
 app.use('/', customersvroutes);

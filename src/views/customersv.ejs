@@ -1,6 +1,6 @@
-<%- include ('partials/_header'); -%>
+<%- include ('partials/_header') %>
 
-<pre><%- (data[0]) -%> </pre>
+<pre><%= data  %> </pre>
 
 <div class="container">
   <div class="row mt-5">
@@ -8,7 +8,7 @@
       <table class="table table-bordered table-hover">
         <thead>
           <tr>
-            <th>Number</th>
+            <th>n°</th>
             <th>Name</th>
             <th>Address</th>
             <th>Phone</th>
@@ -16,7 +16,17 @@
           </tr>
         </thead>
         <tbody>
+          <% if (data) { %>
 
+            <% for(var i = 0; i < data.length; i++) { %>
+              
+              <tr>
+                <td><%= (i + 1)  %> </td>
+              </tr>
+
+           <% } %> 
+
+          <% } %> 
         </tbody>
 
       </table>
@@ -56,4 +66,4 @@
     </div>
   </div>
 </div>
-<%- include ('partials/_footer'); -%>
+<%- include ('partials/_footer'); %>
